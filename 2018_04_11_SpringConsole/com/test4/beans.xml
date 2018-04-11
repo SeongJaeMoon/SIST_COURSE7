@@ -1,0 +1,16 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+   	
+   	<!--bean scope를 설정하지 않으면, 기본이 singleton -->
+	<bean name="m2" class="com.test4.Member" scope="prototype">
+		<property name="name" value="Moon"/>
+		<property name="id" value="clear219"/>
+		<property name="password" value="1234"/>
+		<property name="phone" value="010-4318-0221"/>
+	</bean>
+
+</beans>

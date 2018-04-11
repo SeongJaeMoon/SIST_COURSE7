@@ -1,0 +1,22 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<bean name="m1" class="com.test3.Member" />
+	
+	<bean name="m2" class="com.test3.Member">
+		<property name="name" value="Moon"/>
+		<property name="id" value="clear219"/>
+		<property name="password" value="1234"/>
+		<property name="phone" value="010-4318-0221"/>
+	</bean>
+	<bean name="m3" class="com.test3.Member">
+		<property name = "name" value = "Moons"/>
+		<property name="id" value="sjmoon0221"/>
+		<property name="password" value="1234!"/>
+		<property name="phone" value="010-1234-4321"/>
+	</bean>
+</beans>

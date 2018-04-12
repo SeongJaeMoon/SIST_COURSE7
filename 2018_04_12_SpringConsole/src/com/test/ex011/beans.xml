@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<bean name="SubClass01" class="com.test.ex011.SubClass01" />
+	<bean name="SubClass02" class="com.test.ex011.SubClass02" />
+
+	<bean name="Sample" class="com.test.ex011.Sample">
+		<!-- 의존성 주입 설정 추가 -->
+		<!-- 
+		1. 생성자 의존 주입 : constructor-arg 
+		2. setter 의존 주입 : property 
+		-->
+		<constructor-arg ref="SubClass02" />
+	</bean>
+
+</beans>   

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.test.mapper.MemberMapper">
+	<select id="list" resultType="com.test.domain.Member">
+		SELECT mid_, name_, phone, email,
+		regDate, deptName
+		FROM membersView
+		<if test="key == 'mid_'">
+			WHERE mid_ = #{value}
+		</if>
+		<if test="key == 'name_'">
+			WHERE INSTR(LOWER(name_), LOWER(#{value}))
+		</if>
+		<if test="key == 'phone'">
+			WHERE INSTR(phone, #{value})
+		</if>
+		<if test="key == 'email'">
+			WHERE INSTR(email, #{value})
+		</if>
+		<if test="key == 'regDate'">
+			WHERE INSTR(regDate, #{value})
+		</if>
+		<if test="key == 'deptName'">
+			WHERE INSTR(deptName, #{value})
+		</if>
+		ORDER BY mid_
+	</select>
+
+	<!-- <select id="deptList"> </select> -->
+
+	<select id="totalCount" resultType="Integer">
+		SELECT COUNT(*) AS totalCount
+		FROM membersView
+	</select>
+
+	<!-- <insert id="memberAdd"> </insert> -->
+
+	<!-- <delete id="memberRemove"> </delete> -->
+
+	<!-- <update id="memberModify"> </update> -->
+
+</mapper>  

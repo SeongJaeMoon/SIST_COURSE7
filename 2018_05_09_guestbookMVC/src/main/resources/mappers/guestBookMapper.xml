@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.test.mapper.GuestBookMapper">
+
+	<select id="guestBookList" resultType="com.test.domain.GuestBook">
+		SELECT gid, name_, content, regDate FROM guestbook WHERE blind = 0
+		<if test="key == 'name_'">
+		 AND INSTR(name_, #{value})
+		</if>
+		<if test="key == 'content'">
+		 AND INSTR(content, #{value})
+		</if>
+		<if test="key == 'regDate'">
+		 AND INSTR(regDate, #{value})
+		</if>
+		ORDER BY gid DESC
+		<if test="key == 'ALL'">
+		LIMIT #{limit_offset}, #{limit_count}
+		</if>
+	</select>
+
+	<select id="totalCount" resultType="Integer">
+		SELECT COUNT(*) AS totalCount FROM guestbook WHERE blind = 0
+	</select>
+	
+	<select id="picList" resultType="com.test.domain.GuestBook">
+		SELECT pid, picName, picContent FROM pictureList ORDER BY pid
+	</select>
+	
+	<insert id="guestBookAdd">
+		INSERT INTO guestbook (gid, name_, pw, content, regDate, clientIP, blind) 
+			VALUES ((SELECT * FROM (SELECT CONCAT('G', LPAD(IFNULL(SUBSTRING(MAX(gid), 2), 0) + 1, 5, 0)) AS newGid FROM guestbook) g)
+				, #{name_}, #{pw}, #{content}, NOW(), #{clientIP},  0)
+	</insert>
+	
+	<delete id="guestbookRemove">
+		DELETE FROM guestbook WHERE blind=0 AND gid=#{gid} AND pw=#{pw}
+	</delete>
+
+</mapper>  
